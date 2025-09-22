@@ -68,6 +68,12 @@
       pointer-events: none;
       z-index: 9999;
     }
+    /* Center SVG diagram */
+    .diagram {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
   </style>
 </head>
 <body>
@@ -85,39 +91,4 @@
     <h2>Unit 1 & 2 Vocabulary</h2>
     <div class="vocab"><strong>Bit:</strong> A binary digit, either 0 or 1.</div>
     <div class="vocab"><strong>Byte:</strong> A sequence of 8 bits.</div>
-    <div class="vocab"><strong>Roundoff:</strong> Error when not enough bits are available to represent a number with full precision.</div>
-    <div class="vocab"><strong>Analog data:</strong> Values that change smoothly, rather than in steps (like pitch and volume).</div>
-    <div class="vocab"><strong>Lossless:</strong> Compression that preserves all data and allows full recovery.</div>
-    <div class="vocab"><strong>Lossy:</strong> Compression that discards some data, making full recovery impossible.</div>
-    <div class="vocab"><strong>Metadata:</strong> Data about data, like information about a file.</div>
-  </section>
-
-  <section>
-    <h2>Visuals</h2>
-    <img src="Bits Image.png" alt="Bits Image">
-    <img src="Analog vs Digital.jpeg" alt="Analog vs Digital">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Binary_code.png" alt="Binary code example">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Analog_vs_Digital.png" alt="Analog vs digital signals">
-  </section>
-
-  <section>
-    <h2>How the Internet Works</h2>
-    <p>Here’s a quick video that explains how the internet works:</p>
-    <iframe src="https://www.youtube.com/embed/x3c1ih2NJEg" allowfullscreen></iframe>
-  </section>
-
-  <section>
-    <h2>Streaming Technology</h2>
-    <p>Streaming platforms like <strong>Netflix and YouTube</strong> don’t send an entire video at once. Instead, they break it into small pieces called <em>chunks</em> that are sent over the internet as you watch. This way, the video can adjust its quality based on your internet speed so it plays smoothly without constant buffering.</p>
-    <p><strong>Fun Fact:</strong> YouTube streams more than 1 billion hours of video every single day worldwide!</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Streaming Technology" style="max-width:200px; background:white; padding:1rem; border-radius:10px;">
-  </section>
-
-  <footer>
-    <p>© 2025 Andra Romosan | Built with ❤️ and curiosity</p>
-  </footer>
-
-  <!-- Glitter Canvas -->
-  <canvas id="glitterCanvas"></canvas>
-</body>
-</html>
+    <div class="vocab"><strong>Roundoff:</strong> Error when not enough bits are available to represent
