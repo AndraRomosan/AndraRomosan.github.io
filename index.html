@@ -5,60 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andra Romosan</title>
   <style>
+    /* Base Styling */
     body {
       background-color: #0d0d0d;
       color: #e6e6e6;
-      font-family: "Fira Code", monospace;
+      font-family: "Fira Code", monospace, Arial, sans-serif;
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 1rem;
     }
+
+    /* Header */
     header {
       background: linear-gradient(90deg, #1a1aff, #8000ff, #00cc66);
-      padding: 2rem;
+      padding: 3rem 1rem;
       text-align: center;
       color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
     header h1 {
       margin: 0;
-      font-size: 2.8rem;
+      font-size: 3rem;
+      letter-spacing: 2px;
     }
+    header p {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    /* Sections */
     section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Section Titles */
     h2 {
       color: #66ffcc;
       border-bottom: 2px solid #333;
       padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
     }
+
+    /* Vocabulary Boxes */
     .vocab {
-      background: #1a1a1a;
-      padding: 1rem;
+      background: #262626;
+      padding: 1rem 1.2rem;
       border-radius: 8px;
       margin-bottom: 1rem;
+      border-left: 4px solid #00cc66;
+      transition: background 0.3s;
     }
+    .vocab:hover {
+      background: #333333;
+    }
+
+    /* Images */
     img {
       max-width: 100%;
       border-radius: 10px;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
       display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+    }
+
+    /* Video */
     iframe {
       width: 100%;
-      height: 400px;
+      height: 450px;
       border: none;
-      border-radius: 10px;
-      margin-top: 1rem;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
+
+    /* Streaming Diagram */
+    .diagram {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    /* Footer */
     footer {
       background-color: #111;
-      color: #888;
+      color: #aaa;
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #333;
     }
-    /* Glitter + Unicorn Canvas */
+
+    /* Glitter canvas */
     #glitterCanvas {
       position: fixed;
       top: 0;
@@ -67,6 +122,20 @@
       height: 100%;
       pointer-events: none;
       z-index: 9999;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 2rem 1.2rem;
+        margin: 1rem;
+      }
+      iframe {
+        height: 250px;
+      }
     }
   </style>
 </head>
@@ -95,8 +164,9 @@
   <section>
     <h2>Visuals</h2>
     <img src="Bits Image.png" alt="Bits Image">
-    <img src="Analog vs Digital.jpeg" alt="Analog vs Digital Image">
+    <img src="Analog vs Digital.jpeg" alt="Analog vs Digital">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Binary_code.png" alt="Binary code example">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Analog_vs_Digital.png" alt="Analog vs digital signals">
   </section>
 
   <section>
@@ -107,16 +177,45 @@
 
   <section>
     <h2>Streaming Technology</h2>
-    <p>Streaming platforms like <strong>Netflix and YouTube</strong> don’t send an entire video at once. Instead, they break it into small pieces called <em>chunks</em> that are sent over the internet as you watch. This way, the video can adjust its quality based on your internet speed so it plays smoothly without constant buffering.</p>
-    <p><strong>Fun Fact:</strong> YouTube streams more than 1 billion hours of video every single day worldwide!</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Streaming Technology" style="max-width:200px; background:white; padding:1rem; border-radius:10px;">
+    <p>Streaming platforms like <strong>Netflix and YouTube</strong> don’t send an entire video at once. Instead, they use a method called <em>adaptive streaming</em> where videos are broken into tiny <strong>chunks</strong> that are sent as you watch. This allows the video to adjust its quality depending on your internet speed so playback stays smooth.</p>
+    <p>To make streaming efficient, videos are compressed using <strong>lossy compression</strong> so the file sizes are smaller. Streaming services also use <strong>content delivery networks (CDNs)</strong>, which store copies of videos on servers worldwide. This way, you get the video from the nearest server instead of one far away, making it faster and reducing buffering.</p>
+    <p><strong>Fun Fact:</strong> Netflix can make up more than 15% of global internet traffic during peak hours, and YouTube streams over 1 billion hours of video every day!</p>
+    <div class="diagram">
+      <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Server -->
+        <rect x="20" y="60" width="100" height="80" fill="#1a1aff" rx="10"/>
+        <text x="70" y="105" fill="white" font-size="14" text-anchor="middle">Server</text>
+        
+        <!-- Chunks -->
+        <rect x="160" y="40" width="40" height="40" fill="#8000ff" rx="5"/>
+        <rect x="210" y="40" width="40" height="40" fill="#00cc66" rx="5"/>
+        <rect x="260" y="40" width="40" height="40" fill="#ff66cc" rx="5"/>
+        
+        <text x="220" y="30" fill="white" font-size="12" text-anchor="middle">Video Chunks</text>
+        
+        <!-- Arrows -->
+        <line x1="120" y1="100" x2="160" y2="60" stroke="white" stroke-width="2" marker-end="url(#arrow)" />
+        <line x1="250" y1="80" x2="400" y2="100" stroke="white" stroke-width="2" marker-end="url(#arrow)" />
+        
+        <!-- Viewer -->
+        <circle cx="440" cy="100" r="40" fill="#66ffcc"/>
+        <text x="440" y="105" fill="black" font-size="14" text-anchor="middle">You</text>
+        
+        <!-- Arrowhead definition -->
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="white"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
   </section>
 
   <footer>
     <p>© 2025 Andra Romosan | Built with ❤️ and curiosity</p>
   </footer>
 
-  <!-- Glitter + Unicorn Canvas -->
+  <!-- Glitter Canvas -->
   <canvas id="glitterCanvas"></canvas>
 
   <script>
@@ -133,7 +232,8 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    class GlitterParticle {
+    // existing glitter Particle class (kept similar to your original)
+    class Particle {
       constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -150,18 +250,19 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,192,203,${this.alpha})`; // pink glitter
+        ctx.fillStyle = `rgba(255,192,203,${this.alpha})`;
         ctx.fill();
       }
     }
 
+    // new UnicornParticle class (renders emoji as particles)
     class UnicornParticle {
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 20 + 15; // emoji size
-        this.speedY = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
+        this.size = Math.random() * 18 + 18; // 18px - 36px
+        this.speedY = Math.random() * 1.5 + 0.8; // slower fall than glitter
+        this.speedX = (Math.random() - 0.5) * 1.2;
         this.alpha = 1;
         this.rotation = Math.random() * 360;
         this.rotationSpeed = (Math.random() - 0.5) * 2;
@@ -177,8 +278,11 @@
         ctx.translate(this.x, this.y);
         ctx.rotate((this.rotation * Math.PI) / 180);
         ctx.globalAlpha = this.alpha;
-        ctx.font = `${this.size}px serif`;
-        ctx.fillText("🦄", -this.size / 2, this.size / 2);
+        // emoji-friendly fonts as fallback
+        ctx.font = `${this.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("🦄", 0, 0);
         ctx.restore();
         ctx.globalAlpha = 1;
       }
@@ -187,30 +291,35 @@
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      glitter.forEach((p, i) => {
+      // iterate backwards to safely remove particles
+      for (let i = glitter.length - 1; i >= 0; i--) {
+        const p = glitter[i];
         p.update();
         p.draw();
         if (p.alpha <= 0 || p.y > height) glitter.splice(i, 1);
-      });
+      }
 
-      unicorns.forEach((u, i) => {
+      for (let i = unicorns.length - 1; i >= 0; i--) {
+        const u = unicorns[i];
         u.update();
         u.draw();
         if (u.alpha <= 0 || u.y > height) unicorns.splice(i, 1);
-      });
+      }
 
       requestAnimationFrame(animate);
     }
     animate();
 
-    // Trigger glitter + unicorns when scrolled to bottom
+    // Trigger glitter rain + unicorns when scrolled to bottom
     window.addEventListener("scroll", () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+        // spawn glitter falling from the top
         for (let i = 0; i < 80; i++) {
-          glitter.push(new GlitterParticle(Math.random() * width, 0));
+          glitter.push(new Particle(Math.random() * width, -10));
         }
-        for (let i = 0; i < 10; i++) {
-          unicorns.push(new UnicornParticle(Math.random() * width, -30));
+        // spawn unicorns falling from the top
+        for (let i = 0; i < 12; i++) {
+          unicorns.push(new UnicornParticle(Math.random() * width, -40));
         }
       }
     });
