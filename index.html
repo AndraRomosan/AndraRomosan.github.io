@@ -5,59 +5,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andra Romosan</title>
   <style>
+    /* Base Styling */
     body {
       background-color: #0d0d0d;
       color: #e6e6e6;
-      font-family: "Fira Code", monospace;
+      font-family: "Fira Code", monospace, Arial, sans-serif;
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 1rem;
     }
+
+    /* Header */
     header {
       background: linear-gradient(90deg, #1a1aff, #8000ff, #00cc66);
-      padding: 2rem;
+      padding: 3rem 1rem;
       text-align: center;
       color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 3rem;
+      letter-spacing: 2px;
     }
+    header p {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    /* Sections */
     section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Section Titles */
     h2 {
       color: #66ffcc;
       border-bottom: 2px solid #333;
       padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
     }
+
+    /* Vocabulary Boxes */
     .vocab {
-      background: #1a1a1a;
-      padding: 1rem;
+      background: #262626;
+      padding: 1rem 1.2rem;
       border-radius: 8px;
       margin-bottom: 1rem;
+      border-left: 4px solid #00cc66;
+      transition: background 0.3s;
     }
+    .vocab:hover {
+      background: #333333;
+    }
+
+    /* Images */
     img {
       max-width: 100%;
       border-radius: 10px;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
       display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+    }
+
+    /* Video */
     iframe {
       width: 100%;
-      height: 400px;
+      height: 450px;
       border: none;
-      border-radius: 10px;
-      margin-top: 1rem;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
+
+    /* Streaming Diagram */
+    .diagram {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    /* Footer */
     footer {
       background-color: #111;
-      color: #888;
+      color: #aaa;
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #333;
     }
+
     /* Glitter canvas */
     #glitterCanvas {
       position: fixed;
@@ -68,10 +123,19 @@
       pointer-events: none;
       z-index: 9999;
     }
-    .diagram {
-      display: flex;
-      justify-content: center;
-      margin: 2rem 0;
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 2rem 1.2rem;
+        margin: 1rem;
+      }
+      iframe {
+        height: 250px;
+      }
     }
   </style>
 </head>
@@ -171,20 +235,20 @@
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 4 + 2;
-        this.speedY = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 2;
+        this.size = Math.random() * 3 + 2;
+        this.speedY = Math.random() * 3 + 2;
+        this.speedX = (Math.random() - 0.5) * 1.5;
         this.alpha = 1;
       }
       update() {
         this.y += this.speedY;
         this.x += this.speedX;
-        this.alpha -= 0.01;
+        this.alpha -= 0.008;
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,192,203,${this.alpha})`; // pink glitter
+        ctx.fillStyle = `rgba(255,192,203,${this.alpha})`;
         ctx.fill();
       }
     }
@@ -194,17 +258,17 @@
       glitter.forEach((p, i) => {
         p.update();
         p.draw();
-        if (p.alpha <= 0) glitter.splice(i, 1);
+        if (p.alpha <= 0 || p.y > height) glitter.splice(i, 1);
       });
       requestAnimationFrame(animate);
     }
     animate();
 
-    // Trigger glitter when scrolled to bottom
+    // Trigger glitter rain when scrolled to bottom
     window.addEventListener("scroll", () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        for (let i = 0; i < 100; i++) {
-          glitter.push(new Particle(Math.random() * width, Math.random() * height));
+        for (let i = 0; i < 80; i++) {
+          glitter.push(new Particle(Math.random() * width, 0));
         }
       }
     });
