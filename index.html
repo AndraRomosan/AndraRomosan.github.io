@@ -68,7 +68,6 @@
       pointer-events: none;
       z-index: 9999;
     }
-    /* Center SVG diagram */
     .diagram {
       display: flex;
       justify-content: center;
@@ -154,5 +153,61 @@
 
   <!-- Glitter Canvas -->
   <canvas id="glitterCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("glitterCanvas");
+    const ctx = canvas.getContext("2d");
+    let glitter = [];
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 4 + 2;
+        this.speedY = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 2;
+        this.alpha = 1;
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.alpha -= 0.01;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,192,203,${this.alpha})`; // pink glitter
+        ctx.fill();
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      glitter.forEach((p, i) => {
+        p.update();
+        p.draw();
+        if (p.alpha <= 0) glitter.splice(i, 1);
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Trigger glitter when scrolled to bottom
+    window.addEventListener("scroll", () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        for (let i = 0; i < 100; i++) {
+          glitter.push(new Particle(Math.random() * width, Math.random() * height));
+        }
+      }
+    });
+  </script>
 </body>
 </html>
