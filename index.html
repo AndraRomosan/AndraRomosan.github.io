@@ -95,8 +95,9 @@
   <section>
     <h2>Visuals</h2>
     <img src="Bits Image.png" alt="Bits Image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Binary_code.png" alt="Binary code example">
     <img src="Analog vs Digital.jpeg" alt="Analog vs Digital">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Binary_code.png" alt="Binary code example">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Analog_vs_Digital.png" alt="Analog vs digital signals">
   </section>
 
   <section>
@@ -105,75 +106,18 @@
     <iframe src="https://www.youtube.com/embed/x3c1ih2NJEg" allowfullscreen></iframe>
   </section>
 
+  <section>
+    <h2>Streaming Technology</h2>
+    <p>Streaming platforms like <strong>Netflix and YouTube</strong> don’t send an entire video at once. Instead, they break it into small pieces called <em>chunks</em> that are sent over the internet as you watch. This way, the video can adjust its quality based on your internet speed so it plays smoothly without constant buffering.</p>
+    <p><strong>Fun Fact:</strong> YouTube streams more than 1 billion hours of video every single day worldwide!</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Streaming Technology" style="max-width:200px; background:white; padding:1rem; border-radius:10px;">
+  </section>
+
   <footer>
     <p>© 2025 Andra Romosan | Built with ❤️ and curiosity</p>
   </footer>
 
   <!-- Glitter Canvas -->
   <canvas id="glitterCanvas"></canvas>
-
-  <script>
-    const canvas = document.getElementById("glitterCanvas");
-    const ctx = canvas.getContext("2d");
-    let glitter = [];
-    let active = false;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    class Particle {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 4 + 2;
-        this.speedY = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.opacity = Math.random();
-      }
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-        this.opacity -= 0.01;
-      }
-      draw() {
-        ctx.fillStyle = `rgba(255,192,203,${this.opacity})`; // pink glitter
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function handleGlitter() {
-      if (!active) return;
-      for (let i = 0; i < 5; i++) {
-        glitter.push(new Particle(Math.random() * canvas.width, 0));
-      }
-      for (let i = 0; i < glitter.length; i++) {
-        glitter[i].update();
-        glitter[i].draw();
-        if (glitter[i].opacity <= 0) {
-          glitter.splice(i, 1);
-          i--;
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      handleGlitter();
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    window.addEventListener("scroll", () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
-        active = true; // start glitter when bottom reached
-      }
-    });
-  </script>
 </body>
 </html>
